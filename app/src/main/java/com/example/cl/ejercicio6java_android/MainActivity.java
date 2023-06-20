@@ -27,8 +27,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(textName.getText().toString().isEmpty() || textLastName.getText().toString().isEmpty() || textEmail.getText().toString().isEmpty()
-                || textPassword.getText().toString().isEmpty() ){
-                    Toast.makeText(getBaseContext(), "faltan campos por completar", Toast.LENGTH_SHORT).show();
+                || textPassword.getText().toString().isEmpty()   ){
+                    Toast.makeText(getBaseContext(), "faltan campos por completar ", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(!textEmail.getText().toString().contains("@")){
+                    Toast.makeText(getBaseContext(), "campo correo invalido ", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
