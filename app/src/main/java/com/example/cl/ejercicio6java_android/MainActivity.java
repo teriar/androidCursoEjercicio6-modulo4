@@ -9,37 +9,39 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.cl.ejercicio6java_android.databinding.ActivityMainBinding;
+
 public class MainActivity extends AppCompatActivity {
 
+    private ActivityMainBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
 
-        EditText textName = findViewById(R.id.textName);
-        EditText textLastName = findViewById(R.id.textLastName);
-        EditText textEmail = findViewById(R.id.editTextEmail);
-        EditText textPassword = findViewById(R.id.editTextPassword);
+        setContentView(binding.getRoot());
 
-        Button btnCreated = findViewById(R.id.btnCreated);
 
-        btnCreated.setOnClickListener(new View.OnClickListener() {
+
+
+        binding.btnCreated.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(textName.getText().toString().isEmpty() || textLastName.getText().toString().isEmpty() || textEmail.getText().toString().isEmpty()
-                || textPassword.getText().toString().isEmpty()   ){
+                if(binding.textName.getText().toString().isEmpty() || binding.textLastName.getText().toString().isEmpty() ||
+                        binding.editTextEmail.getText().toString().isEmpty()
+                || binding.editTextPassword.getText().toString().isEmpty()   ){
                     Toast.makeText(getBaseContext(), "faltan campos por completar ", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(!textEmail.getText().toString().contains("@")){
+                if(!binding.editTextEmail.getText().toString().contains("@")){
                     Toast.makeText(getBaseContext(), "campo correo invalido ", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                String name = textName.getText().toString();
-                String lastName = textLastName.getText().toString();
-                String email = textEmail.getText().toString();
-                String password = textPassword.getText().toString();
+                String name = binding.textName.getText().toString();
+                String lastName = binding.textLastName.getText().toString();
+                String email = binding.editTextEmail.getText().toString();
+                String password = binding.editTextPassword.getText().toString();
                 String mensaje = "Nombre: " + name + " Apellido: "+ lastName + " Email: " + email + " Password" + password;
                 Toast.makeText(getBaseContext(), mensaje, Toast.LENGTH_SHORT).show();
             }
